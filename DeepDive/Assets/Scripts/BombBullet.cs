@@ -9,10 +9,14 @@ public class BombBullet : MonoBehaviour
 
     public GameObject Cabinet;
 
+    bool isOn = false;
+
     // Start is called before the first frame update
     void Start()
     {
         index = bullet.Length;
+
+        FindObjectOfType<AudioSub>().Play(2);
     }
 
     public void Shoot()
@@ -26,6 +30,13 @@ public class BombBullet : MonoBehaviour
             {
                 Cabinet.GetComponent<Animator>().SetTrigger("Bomb");
             }
+
+            GetComponent<Animator>().SetTrigger("lever");
+            isOn = true;
+
+            Camera.main.GetComponent<Animator>().SetTrigger("Bomb");
+            FindObjectOfType<AudioSub>().Play(3);
+            FindObjectOfType<AudioManager>().Play(8);
             //น฿ป็
         }
     }

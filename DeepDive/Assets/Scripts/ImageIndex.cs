@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class ImageIndex : MonoBehaviour
 {
-    public Sprite[] img;
+    public Image img;
     [SerializeField]
     int index = 0;
     public int myIndex;
@@ -18,8 +18,6 @@ public class ImageIndex : MonoBehaviour
             FindObjectOfType<CheckWASD>().Check();
             same = true;
         }
-            
-        GetComponent<Image>().sprite = img[index];
     }
 
     public void changeImg()
@@ -28,7 +26,15 @@ public class ImageIndex : MonoBehaviour
         if (index == 4)
             index = 0;
 
-        GetComponent<Image>().sprite = img[index];
+        Vector3 currentRotation = transform.eulerAngles;
+        currentRotation.z -= 90f;
+
+        transform.eulerAngles = currentRotation;
+
+        Vector3 imgRotation = img.transform.eulerAngles;
+        imgRotation.z += 90f;
+
+        img.transform.eulerAngles = imgRotation;
 
         if (myIndex == index)
         {

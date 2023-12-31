@@ -5,8 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+    private void Start()
+    {
+        Screen.SetResolution(1920, 1080, false);
+    }
+
     public void ChangeScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 }

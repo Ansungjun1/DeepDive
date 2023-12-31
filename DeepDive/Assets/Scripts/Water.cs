@@ -15,6 +15,8 @@ public class Water : MonoBehaviour
     private Color originColor;
     private float originFogDesity;
 
+    HPBar hpbar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,8 @@ public class Water : MonoBehaviour
         originFogDesity = RenderSettings.fogDensity;
 
         originDrag = 0;
+
+        hpbar = FindObjectOfType<HPBar>();
     }
 
     // Update is called once per frame
@@ -50,9 +54,13 @@ public class Water : MonoBehaviour
         isWater = true;
         _player.transform.GetComponent<Rigidbody>().drag = waterDrag;
         _player.transform.GetComponent<PlayerMove>().GetSwim();
+        if (FindObjectOfType<HPBar>())
+            FindObjectOfType<HPBar>().GetSwim();
 
         RenderSettings.fogColor = waterColor;
         RenderSettings.fogDensity = waterFogDensity;
+
+        FindObjectOfType<AudioManager>().Play(2);
     }
 
     private void GetOutWater(Transform _player)
@@ -63,8 +71,15 @@ public class Water : MonoBehaviour
             _player.transform.GetComponent<Rigidbody>().drag = originDrag;
             _player.transform.GetComponent<PlayerMove>().GetOutSwim();
 
+            if(FindObjectOfType<HPBar>())
+                FindObjectOfType<HPBar>().GetOutSwim();
+
             RenderSettings.fogColor = originColor;
-            RenderSettings.fogDensity = originFogDesity;        }
+            RenderSettings.fogDensity = originFogDesity;
+
+            FindObjectOfType<AudioManager>().Play(3);
+            FindObjectOfType<AudioSub>().Play(1);
+        }
        
     }
 }

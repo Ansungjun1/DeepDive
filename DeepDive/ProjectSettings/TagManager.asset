@@ -6,11 +6,16 @@ TagManager:
   tags:
   - Test
   - Drag
+  - rain
+  - TT
+  - Water
+  - FX
+  - light
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - PostProcess
   - Water
   - UI
   - 

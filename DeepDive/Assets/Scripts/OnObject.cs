@@ -22,6 +22,18 @@ public class OnObject : MonoBehaviour
     {
         object_.SetActive(true);
         FindObjectOfType<PlayerCamera>().enabled = false;
+
+        StartCoroutine(HideCursor());
+    }
+
+    IEnumerator HideCursor()
+    {
+        yield return new WaitForSeconds(0.1f);
+
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
     }
 
     public void Off()

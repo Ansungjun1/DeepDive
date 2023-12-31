@@ -13,11 +13,13 @@ public class Secret : MonoBehaviour
 
     private void Start()
     {
-        for(int i = 0; i < index.Length; i++)
+        for(int i = 0; i < text.Length; i++)
         {
             index[i] = Random.Range(0, 10);
 
             text[i].text = index[i].ToString();
+
+            Debug.Log(index[i]);
         }
     }
 }
